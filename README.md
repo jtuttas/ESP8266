@@ -14,5 +14,6 @@
         <li><a href="http://service.joerg-tuttas.de:8266/json" target="_blank" >Sensor Data as XML</li>
         <li><a href="http://service.joerg-tuttas.de:8266/json" target="_blank" >Sensor Data as JSON</li>
         <ul>
+        <h2>Ressources Used</h2>
     </body>
 </html>
