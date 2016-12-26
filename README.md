@@ -1,6 +1,6 @@
 # IoT With ESP8266
 
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](http://youtu.be/_6Ki8T2blc0)
+[![IoT with ESP8266](http://img.youtube.com/vi/_6Ki8T2blc0/0.jpg)](http://www.youtube.com/watch?v=_6Ki8T2blc0)
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
