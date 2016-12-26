@@ -3,6 +3,9 @@ var s2Value=512;
 var s3Value=512;
 var dimSocket;
 var tempContext
+var pressureContext;
+var frogImage;
+var glasImage;
 
 /**
  * JSONP Callback Funktion
@@ -28,8 +31,16 @@ function callback(json) {
     //temp=28.0
     
     h=((temp-18)*266)/18
-    console.log("h="+h);
+    console.log("h temp="+h);
     tempContext.fillRect(17,318,25,-h);
+
+    p = json.pressure;
+    //p=101500;    
+    h=((p-100000)*316)/3000;
+    console.log("h pressure="+h);
+
+    pressureContext.drawImage(glasImage,0,0);
+    pressureContext.drawImage(frogImage,85,h);
 
 }
 
@@ -59,14 +70,30 @@ $(document).ready(function () {
     var canvas=document.getElementById("thermometer");
     tempContext=canvas.getContext('2d');
     drawing.onload = function() {
-        console.log("Bild zeichen");
+        console.log("Bild  Thermometer zeichen");
         tempContext.drawImage(drawing,0,0);
-        dimSocket = new WebSocket("ws://service.joerg-tuttas.de:8267");
-    
-        dimSocket.onmessage = function (event) {
-            console.log("Websocket receive data:"+event.data);
-            callback(JSON.parse(event.data));       
-        };
+        
+        glasImage = new Image();
+        canvas=document.getElementById("barometer");
+        pressureContext=canvas.getContext('2d');
+        glasImage.onload = function() {
+            console.log("Bild  Wasserglas zeichen");
+            pressureContext.drawImage(glasImage,0,0);
+
+            frogImage = new Image();
+            frogImage.onload = function () {
+                console.log("Frosch geladen zeichen");
+
+                dimSocket = new WebSocket("ws://service.joerg-tuttas.de:8267");
+
+                dimSocket.onmessage = function (event) {
+                    console.log("Websocket receive data:"+event.data);
+                    callback(JSON.parse(event.data));       
+                };
+            };
+            frogImage.src = "img/frog.png"; 
+        };           
+        glasImage.src = "img/waterglas.png"; 
     };
     drawing.src = "img/thermometer.png"; 
 
