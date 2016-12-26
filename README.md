@@ -1,3 +1,4 @@
+   <html>
         <body>
         <h1>IoT with ESP8266</h1>
         <p>This Project realized an example how to connect to a Webservice running on the ESP8266 with a temperature / pressure Sensor, the BMP180 and an RGB LED<p>
@@ -15,5 +16,5 @@
         <li><a href="http://service.joerg-tuttas.de:8266/json" target="_blank" >Sensor Data as JSON</li>
         </ul>
         </body>
-
+        </html>
 
