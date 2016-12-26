@@ -14,7 +14,7 @@ This Project realized an example how to connect to a Webservice running on the E
   - logging into a google spreadsheet
 
 ### WebApi
-[![Webapi](doc/requests.png)]
+![Webapi](doc/requests.png)
 
 ### Powershell Examples
 
