@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ESP8266</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-slider.css">
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-slider.min.js"></script>
+        <style>
+            #ex1Slider .slider-selection {
+                background: #ff0000;                
+            }
+            #ex2Slider .slider-selection {
+                background: #00ff00;                
+            }
+            #ex3Slider .slider-selection {
+                background: #0000ff;                
+            }
+
+            .slider {
+                width: 100% !important;
+            }
+
+            #preview {
+                width: 100% !important;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">   
+                <div class="jumbotron">
+                    <div class="container">
+                        <h1><img src="img/esp8266.png">&nbsp;IoT with ESP8266</h1>
+                    </div>
+
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#controll">Controller</a></li>
+                    <li><a data-toggle="tab" href="#tabVisual">Visual</a></li>
+                    <li><a data-toggle="tab" href="#tabTemperature">Temperature</a></li>
+                    <li><a data-toggle="tab" href="#tabPressure">Pressure</a></li>
+                    <li><a data-toggle="tab" href="#tabSignal">Signal</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="controll" class="tab-pane fade in active" >
+                        <br/>
+                        <div class="row" >
+                            <div class="col-md-4">
+                                <p class="help-block text-center"><iframe width="330" height="250" src="http://service.joerg-tuttas.de:8181"></iframe></p>
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button id="on" class="btn btn-danger btn-block">SET</button>                                   
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button id="off" class="btn btn-success btn-block">OFF</button>                                    
+                                    </div>
+                                </div>
+                                <br/>
+                                <h3>Set dim Value</h3>
+                                <strong>red</strong>
+                                <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="1" data-slider-max="1023" data-slider-step="1" data-slider-value="512"/>
+                                <p></p>
+                                <strong>green</strong>
+                                <input id="ex2" data-slider-id='ex2Slider' type="text" data-slider-min="1" data-slider-max="1023" data-slider-step="1" data-slider-value="512"/>
+                                <p></p>
+                                <strong>blue</strong>
+                                <input id="ex3" data-slider-id='ex3Slider' type="text" data-slider-min="1" data-slider-max="1023" data-slider-step="1" data-slider-value="512"/>
+                                <p></p>
+                                <p></p>
+                                <div id="preview"><h3>Preview</h3></div>
+                            </div>            
+                            <div class="col-md-5">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Key</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>dimValue [red]</td>
+                                            <td id="dimValueRed">?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>dimValue [green]</td>
+                                            <td id="dimValueGreen">?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>dimValue [blue]</td>
+                                            <td id="dimValueBlue">?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>WLAN Signal strength [dB]</td>
+                                            <td id="signal_dB">?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Temperature [C]</td>
+                                            <td id="temperature">?</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pressure [Pa]</td>
+                                            <td id="pressure" >?</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tabVisual" class="tab-pane fade" >
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <canvas id="thermometer" width="107" height="400">
+                                    
+                                </canvas>
+                            </div>
+                            <div class="col-md-6">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tabTemperature" class="tab-pane fade" >
+                        <div class="row">
+                            <iframe width="600" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1987932751&amp;format=interactive"></iframe>
+                        </div>
+                    </div>
+                    <div id="tabPressure" class="tab-pane fade" >
+                        <div class="row">
+                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1578500181&amp;format=interactive"></iframe>
+                        </div>
+                    </div>
+                    <div id="tabSignal" class="tab-pane fade" >
+                        <div class="row">
+                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=228512809&amp;format=interactive"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/esp8266.js"></script>
+    </body>
+</html>
