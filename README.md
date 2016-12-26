@@ -7,6 +7,7 @@
         <img src="doc/aufbau_Steckplatine.png">
         <h2>Web API</h2>
         <img src="doc/requests.png">
+        <h2>Ressources Used</h2>
         <h2>Examples</h2>
         <ul>
         <li><a href="http://htmlpreview.github.io/?https://github.com/jtuttas/ESP8266/blob/final/public_html/index.html" target="_blank">HTML5 WebClient with Google Spead Sheet and Control Panel</a></li>
@@ -14,6 +15,6 @@
         <li><a href="http://service.joerg-tuttas.de:8266/json" target="_blank" >Sensor Data as XML</li>
         <li><a href="http://service.joerg-tuttas.de:8266/json" target="_blank" >Sensor Data as JSON</li>
         <ul>
-        <h2>Ressources Used</h2>
+        
     </body>
 </html>
