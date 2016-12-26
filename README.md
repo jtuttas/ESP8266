@@ -1,7 +1,7 @@
 # IoT With ESP8266
 This Project realized an example how to connect to a Webservice running on the ESP8266 with a temperature / pressure Sensor, the BMP180 and an RGB LED
 
-![IoT with ESP8266](http://img.youtube.com/vi/_6Ki8T2blc0/0.jpg)](http://www.youtube.com/watch?v=_6Ki8T2blc0)
+[![Alt text](https://img.youtube.com/vi/_6Ki8T2blc0/0.jpg)](https://www.youtube.com/watch?v=_6Ki8T2blc0)
 
 ### Wirering
 ![Wireing](doc/aufbau_Steckplatine.png)
@@ -36,6 +36,8 @@ Invoke-RestMethod http://service.joerg-tuttas.de:8266/xml
 ```
 
 ### used Ressources
+- Websocket implementation by [Markus Sattler]
+- library for the Adafruit [BMP085/BMP180] Barometric Pressure + Temp sensor
 
 ### Examples
 
@@ -48,4 +50,5 @@ Invoke-RestMethod http://service.joerg-tuttas.de:8266/xml
    [Webserver]: <http://service.joerg-tuttas.de:8266/index.html>
    [json]: <http://service.joerg-tuttas.de:8266/json>
    [xml]: <http://service.joerg-tuttas.de:8266/xml>
-   
+   [Markus Sattler]: <https://github.com/Links2004/arduinoWebSockets>
+   [BMP085/BMP180]: <https://github.com/adafruit/Adafruit-BMP085-Library>
