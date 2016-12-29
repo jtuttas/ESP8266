@@ -36,11 +36,11 @@ function callback(json) {
 
     p = json.pressure;
     //p=101500;    
-    h=((p-100000)*316)/3000;
+    h=((p-100000)*316)/4000;
     console.log("h pressure="+h);
 
     pressureContext.drawImage(glasImage,0,0);
-    pressureContext.drawImage(frogImage,85,h);
+    pressureContext.drawImage(frogImage,85,316-h);
 
 }
 

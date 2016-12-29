@@ -6,6 +6,9 @@ This Project realized an example how to connect to a Webservice running on the E
 ### Wirering
 ![Wireing](doc/aufbau_Steckplatine.png)
 
+### Screenshots
+![Webapi](doc/index_html.png)
+![Webapi](doc/config_html.png)
 ### Features
   - Webservice JSON,XML,JSONP
   - Embedded Webserver
