@@ -7,8 +7,11 @@ This Project realized an example how to connect to a Webservice running on the E
 ![Wireing](doc/aufbau_Steckplatine.png)
 
 ### Screenshots
+#### web pages
 ![Webapi](doc/index_html.png)
 ![Webapi](doc/config_html.png)
+#### .NET Powershell Client
+![Webapi](doc/client.png)
 ### Diagrams
 #### structure chart
 ![usecase](doc/setup.png)
