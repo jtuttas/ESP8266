@@ -11,7 +11,7 @@ This Project realized an example how to connect to a Webservice running on the E
 ![Webapi](doc/index_html.png)
 ![Webapi](doc/config_html.png)
 #### .NET Powershell Client
-![Webapi](doc/client.png)
+![Webapi](doc/client.PNG)
 ### Diagrams
 #### structure chart
 ![usecase](doc/setup.png)
