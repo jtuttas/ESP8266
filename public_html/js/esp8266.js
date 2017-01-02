@@ -6,6 +6,7 @@ var tempContext
 var pressureContext;
 var frogImage;
 var glasImage;
+var pollMac = ["5c:cf:7f:d0:1f:21:"];
 
 /**
  * JSONP Callback Funktion
@@ -65,7 +66,12 @@ $("#off").click(function () {
 $(document).ready(function () {
     console.log("Start..");
     setPreview();
-        
+     $("#sdata").empty();
+        pollMac.forEach(function(mac) {
+            console.log("Polling MAC:"+mac);
+            fetchGoogleData(mac);
+        });
+    doPoll();
     drawing = new Image();
     var canvas=document.getElementById("thermometer");
     tempContext=canvas.getContext('2d');
@@ -108,17 +114,60 @@ function setPreview() {
     $("#preview").css("background-color", "rgb("+r+"," + g + "," + b + ")");
 }
 
-/*
+
+function pollCallback(data) {
+    console.log("Poll callback:"+JSON.stringify(data));
+    var html=  ' <table class="table table-striped">'+
+                        '<thead>'+
+                        '<tr>'+
+                        '<th>Sensor (MAC='+data.mac+')</th>'+
+                        '<th>Value</th>'+
+                        '</tr>'+
+                        '</thead>'+
+                        '<tbody>'+
+                        '<tr>'+
+                        '<td >last measurement</td>'+
+                        '<td>'+data.date+'</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td >temperature</td>'+
+                        '<td>'+data.temperature+' °C</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td >pressure</td>'+
+                        '<td>'+data.pressure+' Pa</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td >signal</td>'+
+                        '<td>'+data.signal_db+' dB</td>'+
+                        '</tr>'+
+                        '<tr>'+
+                        '<td >Vcc</td>'+
+                        '<td>'+data.vcc+' V</td>'+
+                        '</tr>'+
+                        '</tbody>'+
+                        '</table>';
+    $("#sdata").append(html);
+}
+
+function fetchGoogleData(mac) {
+    $.ajax({
+        url: "https://script.google.com/macros/s/AKfycbzJqwSzEzhEhr9KIRHGrhXSypd-5MbWLsigN4BUvg-ivvq9GPsq/exec?mac="+mac+"&prefix=pollCallback",
+        dataType: 'jsonp',
+    });    
+}
+
 function doPoll() {
-    setTimeout(function () {
-        $.ajax({
-            url: "http://service.joerg-tuttas.de:8266/jsonp",
-            dataType: 'jsonp',
+    setTimeout(function () {        
+        $("#sdata").empty();
+        pollMac.forEach(function(mac) {
+            console.log("Polling MAC:"+mac);
+            fetchGoogleData(mac);
         });
         doPoll();
-    }, 2000);
+    }, 1000*60*15);
 }
-*/
+
 
 $('#ex1').slider({
 	formatter: function(value) {

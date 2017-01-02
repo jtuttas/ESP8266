@@ -41,7 +41,8 @@
                 </div>
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#controll">Controller</a></li>
-                    <li><a data-toggle="tab" href="#tabVisual">Visual</a></li>
+                    <li><a data-toggle="tab" href="#tabData">Daten</a></li>
+                    <li><a data-toggle="tab" href="#tabVisual">Visualization</a></li>
                     <li><a data-toggle="tab" href="#tabTemperature">Temperature</a></li>
                     <li><a data-toggle="tab" href="#tabPressure">Pressure</a></li>
                     <li><a data-toggle="tab" href="#tabSignal">Signal</a></li>
@@ -130,20 +131,54 @@
                             </div>
                         </div>
                     </div>
+                    <div id="tabData" class="tab-pane fade" >
+                        <div class="row">
+                            <div  id="sdata" class="col-md-12">
+                                
+                            </div>
+                        </div>
+                    </div>
                     <div id="tabTemperature" class="tab-pane fade" >
                         <div class="row">
-                            <iframe width="600" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1987932751&amp;format=interactive"></iframe>
-                        </div>
+                            <div class="col-md-12">
+                                <h2>Innentemperatur</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <iframe width="600" height="400" seamless frameborder="0" scrolling="no"  src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1987932751&amp;format=interactive"></iframe>                            </div>
+                            <div class="col-md-6">
+                                <iframe width="600" height="400" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1015969941&amp;format=interactive"></iframe>
+                            </div>
+                        </div>                        
                     </div>
                     <div id="tabPressure" class="tab-pane fade" >
                         <div class="row">
-                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1578500181&amp;format=interactive"></iframe>
+                            <div class="col-md-12">
+                                <h2>Luftdruck</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1578500181&amp;format=interactive"></iframe>
+                            </div>
+                            <div class="col-md-6">
+                                <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1916144158&amp;format=interactive"></iframe>                            
+                            </div>
                         </div>
+                        
                     </div>
                     <div id="tabSignal" class="tab-pane fade" >
                         <div class="row">
-                            <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=228512809&amp;format=interactive"></iframe>
+                            <div class="col-md-12">
+                                <h2>Signalstärke</h2>
+                            </div>
+                            <div class="col-md-6">
+                                <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=228512809&amp;format=interactive"></iframe>
+                            </div>
+                            <div class="col-md-6">
+                                <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1La_C9DYzRMM6PpUrHrfhvxG7Hw6Ffd1kavU8_1yWKKo/pubchart?oid=1230615227&amp;format=interactive"></iframe>
+                            </div>
                         </div>
+                        
+                    </div>
+
                     </div>
                 </div>
             </div>

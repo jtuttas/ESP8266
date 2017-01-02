@@ -4,6 +4,8 @@
 #include <WebSocketsServer.h>
 #include "FS.h"
 
+ADC_MODE(ADC_VCC);
+
 // RGB LED
 #define ledred 16
 #define ledgreen 5
@@ -13,8 +15,11 @@
 #define scl 0
 #define sda 2
 
+// Analog Eingang zum Messen der Versorgungsspannung
+#define battery A0
 
-#define configFilename "config.dat"
+
+#define configFilename "config4.dat"
 
 WiFiServer server(80);
 WebSocketsServer webSocket = WebSocketsServer(81);
@@ -46,6 +51,7 @@ unsigned long tickerLog = 0;
 Adafruit_BMP085 bmp180;
 float temperature;
 int32_t pressure;
+float voltage;
 char MAC_char[18];
 String confSSID;
 String confPasswd;
@@ -310,6 +316,8 @@ String getJson() {
     s+=String(temperature);
     s+=String(",\r\n\"pressure\":");
     s+=String(pressure);
+    s+=String(",\r\n\"vcc\":");
+    s+=String(voltage);
     s+=String(",\r\n\"mac\": \"");
     s+=String(MAC_char);
     s+=String("\"");
@@ -381,6 +389,7 @@ void setup() {
   pinMode(ledred,OUTPUT);
   pinMode(ledgreen,OUTPUT);
   pinMode(ledblue,OUTPUT);
+  pinMode(battery,INPUT);
 
   uint8_t MAC_array[6];  
   Serial.write("\r\nRead MAC Adress: ");
@@ -467,6 +476,12 @@ void setup() {
     pressure=0;
   }  
 
+
+  voltage = ESP.getVcc() / 1000.0;
+  Serial.write("\r\nVersorgungsspannung:");
+  Serial.println (voltage);
+
+
   Serial.write("\r\nStarte Server");
   server.begin();
   Serial.write("\r\nStarte Websocket");
@@ -484,6 +499,10 @@ void loop() {
         bool updateClients=false;
         tickerMeasure=millis();
         Serial.println("Messe .....!");
+        Serial.print("Versorgungsspannung: ");
+        voltage = ESP.getVcc() / 1000.0;
+        Serial.println(voltage);
+        
         rssi = WiFi.RSSI();
         Serial.print("Signal strength: ");
         Serial.print(rssi);
@@ -527,7 +546,7 @@ void loop() {
          return;
         }
         // /macros/s/AKfycbzJqwSzEzhEhr9KIRHGrhXSypd-5MbWLsigN4BUvg-ivvq9GPsq/exec?temperature=1&pressure=2&signal_dB=12
-        String url = confUrl;
+        String url = confUrl.substring(0,confUrl.length()-1);
         url+=String("?temperature=");
         String sTemp = String(temperature);                
         sTemp.replace(".",",");
@@ -538,10 +557,15 @@ void loop() {
         url+=String(rssi);
         url +=String("&mac=");
         url+=String(MAC_char);
+        url +=String("&vcc=");
+        String sVcc = String(voltage);                
+        sVcc.replace(".",",");
+        url+=String(sVcc);
         Serial.print("Requesting URL: ");
         Serial.println(url);
-        client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+        client.print(String("POST ") + url + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" + 
+               "Content-Length: 0\r\n"
                "Connection: close\r\n\r\n");
         delay(10);
         Serial.println("Response:");
@@ -707,6 +731,9 @@ void loop() {
       s+=String("\r\n<pressure>");
       s+=pressure;
       s+=String("</pressure>");
+      s+=String("\r\n<vcc>");
+      s+=voltage;
+      s+=String("</vcc>");
       s+=String("\r\n<mac>");
       s+=String(MAC_char);
       s+=String("</mac>");

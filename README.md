@@ -9,6 +9,19 @@ This Project realized an example how to connect to a Webservice running on the E
 ### Screenshots
 ![Webapi](doc/index_html.png)
 ![Webapi](doc/config_html.png)
+### Diagrams
+#### structure chart
+![usecase](doc/setup.png)
+#### ER diagram
+![usecase](doc/ER-Diagramm.png)
+#### use case diagram
+![usecase](doc/usecase.png)
+#### activity diagram
+![usecase](doc/activity.png)
+#### sequence diagram
+![usecase](doc/sequenz.png)
+#### state machine
+![usecase](doc/zustand.png)
 ### Features
   - Webservice JSON,XML,JSONP
   - Embedded Webserver
@@ -36,6 +49,10 @@ Invoke-RestMethod http://service.joerg-tuttas.de:8266/json/dim/r=102/g=512/b=102
 **Get Sensor Data as XML**
 ```sh
 Invoke-RestMethod http://service.joerg-tuttas.de:8266/xml
+```
+**Get Sensor Data from Google Spreadsheet**
+```sh
+Invoke-RestMethod -Uri https://script.google.com/macros/s/AKfycbzJqwSzEzhEhr9KIRHGrhXSypd-5MbWLsigN4BUvg-ivvq9GPsq/exec?mac=5c:cf:7f:d0:1f:21:
 ```
 
 ### used Ressources
