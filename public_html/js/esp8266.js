@@ -92,6 +92,12 @@ $(document).ready(function () {
 
                 dimSocket = new WebSocket("ws://service.joerg-tuttas.de:8267");
 
+                dimSocket.onerror=function(event){
+                     console.log("Error");
+                     $("#controller").empty();
+                     $("#wsdata").empty();
+                     $("#controller").append('<h1>failed to connect to ESP8266 Websocket</h1>');
+                 }
                 dimSocket.onmessage = function (event) {
                     console.log("Websocket receive data:"+event.data);
                     callback(JSON.parse(event.data));       

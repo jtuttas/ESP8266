@@ -14,17 +14,19 @@ This Project realized an example how to connect to a Webservice running on the E
 ![Webapi](doc/client.PNG)
 ### Diagrams
 #### structure chart
-![usecase](doc/setup.png)
+![structure chart](doc/setup.png)
 #### ER diagram
-![usecase](doc/ER-Diagramm.png)
+![ER diagram](doc/ER-Diagramm.png)
 #### use case diagram
 ![usecase](doc/usecase.png)
 #### activity diagram
-![usecase](doc/activity.png)
+![activity diagram](doc/activity.png)
 #### sequence diagram
-![usecase](doc/sequenz.png)
+![sequence diagram](doc/sequenz.png)
 #### state machine
-![usecase](doc/zustand.png)
+![state machine](doc/zustand.png)
+#### deployment diagram
+![deployment diagram](doc/verteilung.png)
 ### Features
   - Webservice JSON,XML,JSONP
   - Embedded Webserver

@@ -7,7 +7,7 @@
 ADC_MODE(ADC_VCC);
 
 // RGB LED
-#define ledred 16
+#define ledred 14
 #define ledgreen 5
 #define ledblue 4
 
@@ -18,6 +18,10 @@ ADC_MODE(ADC_VCC);
 // Analog Eingang zum Messen der Versorgungsspannung
 #define battery A0
 
+// Deep Sleep Mode
+const bool deepSleep=true;
+// alle 15 Minuten aufwachen
+#define deepSleepS 15*60*1000*1000
 
 #define configFilename "config4.dat"
 
@@ -383,6 +387,45 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t lenght
 
 }
 
+void send2Google() {
+  WiFiClientSecure client;
+  if (!client.connect(host, 443)) {
+   Serial.println("connection failed");
+   return;
+  }
+  // /macros/s/AKfycbzJqwSzEzhEhr9KIRHGrhXSypd-5MbWLsigN4BUvg-ivvq9GPsq/exec?temperature=1&pressure=2&signal_dB=12
+  String url = confUrl.substring(0,confUrl.length()-1);
+  url+=String("?temperature=");
+  String sTemp = String(temperature);                
+  sTemp.replace(".",",");
+  url += sTemp;
+  url +=String("&pressure=");
+  url +=String(pressure);
+  url +=String("&signal_dB=");
+  url+=String(rssi);
+  url +=String("&mac=");
+  url+=String(MAC_char);
+  url +=String("&vcc=");
+  String sVcc = String(voltage);                
+  sVcc.replace(".",",");
+  url+=String(sVcc);
+  Serial.print("Requesting URL: ");
+  Serial.println(url);
+  client.print(String("POST ") + url + " HTTP/1.1\r\n" +
+         "Host: " + host + "\r\n" + 
+         "Content-Length: 0\r\n"
+         "Connection: close\r\n\r\n");
+  delay(10);
+  Serial.println("Response:");
+  while(client.available()){
+    String line = client.readStringUntil('\r');
+    Serial.print(line);
+  }
+
+  Serial.println();
+  Serial.println("closing connection");
+}
+
 void setup() {
   Serial.begin(115200);
   Serial.write("\r\n\r\nSet Output Pin");
@@ -481,13 +524,19 @@ void setup() {
   Serial.write("\r\nVersorgungsspannung:");
   Serial.println (voltage);
 
-
-  Serial.write("\r\nStarte Server");
-  server.begin();
-  Serial.write("\r\nStarte Websocket");
-  webSocket.begin();
-  webSocket.onEvent(webSocketEvent);
-  Serial.write("\r\nfinished Setup!");  
+  if (!deepSleep) {
+    Serial.write("\r\nStarte Server");
+    server.begin();
+    Serial.write("\r\nStarte Websocket");
+    webSocket.begin();
+    webSocket.onEvent(webSocketEvent);
+    Serial.write("\r\nfinished Setup!");  
+  }
+  else {
+    send2Google();
+    Serial.write("\r\nfinished Setup turn into deep sleep!");  
+    ESP.deepSleep(deepSleepS);
+  }
 }
 
 void loop() {
@@ -540,42 +589,7 @@ void loop() {
       if (tickerLog+(1000*60*15)<millis() && !AP_Mode ) {
         tickerLog=millis();
         // Daten zum Logger (Google Tabelle) senden
-        WiFiClientSecure client;
-        if (!client.connect(host, 443)) {
-         Serial.println("connection failed");
-         return;
-        }
-        // /macros/s/AKfycbzJqwSzEzhEhr9KIRHGrhXSypd-5MbWLsigN4BUvg-ivvq9GPsq/exec?temperature=1&pressure=2&signal_dB=12
-        String url = confUrl.substring(0,confUrl.length()-1);
-        url+=String("?temperature=");
-        String sTemp = String(temperature);                
-        sTemp.replace(".",",");
-        url += sTemp;
-        url +=String("&pressure=");
-        url +=String(pressure);
-        url +=String("&signal_dB=");
-        url+=String(rssi);
-        url +=String("&mac=");
-        url+=String(MAC_char);
-        url +=String("&vcc=");
-        String sVcc = String(voltage);                
-        sVcc.replace(".",",");
-        url+=String(sVcc);
-        Serial.print("Requesting URL: ");
-        Serial.println(url);
-        client.print(String("POST ") + url + " HTTP/1.1\r\n" +
-               "Host: " + host + "\r\n" + 
-               "Content-Length: 0\r\n"
-               "Connection: close\r\n\r\n");
-        delay(10);
-        Serial.println("Response:");
-        while(client.available()){
-          String line = client.readStringUntil('\r');
-          Serial.print(line);
-        }
-
-        Serial.println();
-        Serial.println("closing connection");
+        send2Google();
       }
    }
    else {
