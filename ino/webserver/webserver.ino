@@ -4,7 +4,6 @@
 #include <WebSocketsServer.h>
 #include "FS.h"
 
-ADC_MODE(ADC_VCC);
 
 // RGB LED
 #define ledred 14
@@ -520,7 +519,7 @@ void setup() {
   }  
 
 
-  voltage = ESP.getVcc() / 1000.0;
+  voltage = (5*0.66*analogRead(A0))/198;
   Serial.write("\r\nVersorgungsspannung:");
   Serial.println (voltage);
 
@@ -549,7 +548,7 @@ void loop() {
         tickerMeasure=millis();
         Serial.println("Messe .....!");
         Serial.print("Versorgungsspannung: ");
-        voltage = ESP.getVcc() / 1000.0;
+        voltage = (5*0.66*analogRead(A0))/198;
         Serial.println(voltage);
         
         rssi = WiFi.RSSI();
