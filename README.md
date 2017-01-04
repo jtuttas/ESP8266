@@ -4,7 +4,12 @@ This Project realized an example how to connect to a Webservice running on the E
 [![Alt text](https://img.youtube.com/vi/_6Ki8T2blc0/0.jpg)](https://www.youtube.com/watch?v=_6Ki8T2blc0)
 
 ### Wirering
+#### breadboard
 ![Wireing](doc/aufbau_Steckplatine.png)
+#### circuit diagram
+![Wireing](doc/aufbau_Schaltplan.png)
+#### layout
+![Wireing](doc/aufbau_Leiterplatte.png)
 
 ### Screenshots
 #### web pages
