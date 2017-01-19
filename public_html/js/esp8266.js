@@ -37,7 +37,7 @@ function callback(json) {
 
     p = json.pressure;
     //p=101500;    
-    h=((p-100000)*316)/4000;
+    h=((p-98000)*316)/6000;
     console.log("h pressure="+h);
 
     pressureContext.drawImage(glasImage,0,0);

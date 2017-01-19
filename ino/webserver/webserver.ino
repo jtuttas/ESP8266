@@ -18,7 +18,7 @@
 #define battery A0
 
 // Deep Sleep Mode
-const bool deepSleep=true;
+const bool deepSleep=false;
 // alle 15 Minuten aufwachen
 #define deepSleepS 15*60*1000*1000
 
