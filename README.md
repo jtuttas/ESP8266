@@ -3,6 +3,9 @@ This Project realized an example how to connect to a Webservice running on the E
 
 [![Alt text](https://img.youtube.com/vi/_6Ki8T2blc0/0.jpg)](https://www.youtube.com/watch?v=_6Ki8T2blc0)
 
+### Turn LED on/off via QR Codes
+ON: ![On](doc/on.png) ![Off](doc/off.png)
+
 ### Wirering
 #### breadboard
 ![Wireing](doc/aufbau_Steckplatine.png)
