@@ -32,6 +32,7 @@ var toast = function (msg) {
             });
 }
 
+
 function callback(json) {
     console.log("Results");
     console.log(JSON.stringify(json));
@@ -39,7 +40,8 @@ function callback(json) {
 }
 
 $("#on").click(function () {
-    adr = url + "?socket%3D0%26state%3D1";
+    console.log("output="+$("input[name='radio-choice-b']:checked").val());
+    adr = url + "?socket%3D"+$("input[name='radio-choice-b']:checked").val()+"%26state%3D1";
     if ($("#ta").val() != "") {
         adr = adr + "%26delay%3D" + $("#ta").val();
     }
@@ -60,7 +62,7 @@ $("#on").click(function () {
     });
 });
 $("#off").click(function () {
-    adr = url + "?socket%3D0%26state%3D0";
+    adr = url + "?socket%3D"+$("input[name='radio-choice-b']:checked").val()+"%26state%3D0";
     console.log("adr=" + adr);
     $.ajax({
         url: adr,
@@ -76,4 +78,8 @@ $("#off").click(function () {
             }
         }
     });
+});
+
+$("#chanel").click(function () {
+    console.log("click:"+$(this).value());
 });

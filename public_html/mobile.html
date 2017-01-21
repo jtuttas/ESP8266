@@ -11,8 +11,9 @@
         <script src="js/jquery.mobile-1.4.5.min.js"></script>
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" href="css/theme-classic.css" />   
+
         <style>
-            
+
 
             .ui-loader-background {
                 width:100%;
@@ -36,6 +37,22 @@
             .ui-icon-loading {
                 background: url("http://preloaders.net/preloaders/720/Moving%20line.gif");
             }
+            .ui-controlgroup-controls
+            {
+                width:100% !important;
+                text-align: center !important;
+            }
+            .ui-radio {
+                width:25% !important;
+
+            }
+
+            .ui-controlgroup-controls .ui-btn-corner-all, .ui-controlgroup-controls .ui-btn.ui-corner-all {
+                text-align: center;
+                    
+            }
+
+
         </style>
     </head>
     <body>        
@@ -45,9 +62,23 @@
             </div>
             <div data-role="content">
                 <br/>
+
+                <fieldset data-role="controlgroup" data-type="horizontal"  >
+                    <legend>Schalter:</legend>
+                   
+                    <input  type="radio" name="radio-choice-b" id="radio-choice-c" value="0" checked="checked">
+                    <label for="radio-choice-c">1</label>
+                    <input  type="radio" name="radio-choice-b" id="radio-choice-d" value="1">
+                    <label for="radio-choice-d">2</label>
+                    <input  type="radio" name="radio-choice-b" id="radio-choice-e" value="2">
+                    <label for="radio-choice-e">3</label>
+                    <input  type="radio" name="radio-choice-b" id="radio-choice-f" value="3">
+                    <label for="radio-choice-f">4</label>
+                </fieldset>
+    
                 <div data-role="fieldcontain" class="first">
                     <label for="text1">Auschaltverzögerung</label>
-                    <input type="text" id="ta" placeholder="Sekunden"
+                    <input type="number" id="ta" placeholder="Sekunden"
                            />
                 </div>
                 <br/>
@@ -65,5 +96,6 @@
         <div class="ui-loader-background"> </div>
         <script src="js/config.js"></script>
         <script src="js/rccontrol.js"></script>
+
     </body>
 </html>
