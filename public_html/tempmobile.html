@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Temperatur</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+        <link rel="apple-touch-icon" sizes="57x57" href="img/thermometer_icon-57.png"/>
+        <link rel="apple-touch-icon" sizes="60x60" href="img/thermometer_icon-60.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="img/thermometer_icon-72.png"/>
+        <link rel="apple-touch-icon" sizes="76x76" href="img/thermometer_icon-76.png"/>
+        <link rel="apple-touch-icon" sizes="120x120" href="img/thermometer_icon-120.png"/>
+        <link rel="apple-touch-icon" sizes="144x144" href="img/thermometer_icon-144.png"/>
+        <link rel="apple-touch-icon" sizes="152x152" href="img/thermometer_icon-152.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="img/thermometer_icon-180.png"/>
+        <link rel="icon" type="image/png" sizes="192x192"  href="img/thermometer_icon-192.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="img/thermometer_icon-32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="img/thermometer_icon-96.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="img/thermometer_icon-16.png"/>
+        <link rel="manifest" href="../img/manifest.json"/>
+
+
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="css/theme-classic.css" />   
+
+
+        <style>
+
+
+            .ui-loader-background {
+                width:100%;
+                height:100%;
+                top:0;
+                padding: 0;
+                margin: 0;
+                background: rgba(0, 0, 0, 0.6);
+                display:none;
+                position: fixed;
+                z-index:100;
+            }
+
+            .ui-loading .ui-loader-background {
+                display:block;
+            }
+
+            .ui-loader .ui-icon-loading {
+                background-color: transparent !important;
+            }
+            .ui-icon-loading {
+                background: url("http://preloaders.net/preloaders/720/Moving%20line.gif");
+            }
+            
+            .ce {
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 52px;
+            }
+
+        </style>
+    </head>
+    <body>        
+        <div data-role="page" id="page1">
+            <div data-role="header">
+                <h3>Temperatur</h3>
+                <a id="refresh" href="#" data-icon="refresh">&nbsp;</a>
+            </div>
+            <div data-role="content" class="ce">
+                <br/>
+                <h3>Innen</h3>
+                <h1 id="t5ccf7fd01f21">? °C</h1>
+                <strong id="p5ccf7fd01f21">? hPa</strong>
+               <br/>
+               <br/>
+                <h3>Außen</h3>
+                <h1 id="ta020a6132e26">? °C</h1>                                  
+                <strong id="pa020a6132e26">? hPa</strong>
+                
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <h1>(c) 2017 by Dr. Jörg Tuttas</h1>
+            </div>
+        </div>
+        <div class="ui-loader-background"> </div>
+        <script src="js/tsensor.js"></script>
+
+    </body>
+</html>
